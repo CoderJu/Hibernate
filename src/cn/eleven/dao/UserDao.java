@@ -108,9 +108,9 @@ public class UserDao {
             query.setMaxResults(maxResult);
             List<User> list = query.list();
 
-            int count = (Integer) session.createQuery("select  count(*) from User ").uniqueResult();
+            Long count = (Long) session.createQuery("select  count(*) from User ").uniqueResult();
 
-            queryResult = new QueryResult(count, list);
+            queryResult = new QueryResult(count.intValue(), list);
             tx.commit();
             return queryResult;
         } catch (RuntimeException e) {

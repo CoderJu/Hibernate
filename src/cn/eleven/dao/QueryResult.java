@@ -1,5 +1,7 @@
 package cn.eleven.dao;
 
+import cn.eleven.com.User;
+
 import java.util.List;
 
 /**
@@ -7,7 +9,7 @@ import java.util.List;
  */
 public class QueryResult {
     private int count;
-    private List list;
+    private List<User> list;
 
     public int getCount() {
         return count;
@@ -17,11 +19,11 @@ public class QueryResult {
         this.count = count;
     }
 
-    public List getList() {
+    public List<User> getList() {
         return list;
     }
 
-    public void setList(List list) {
+    public void setList(List<User> list) {
         this.list = list;
     }
 
