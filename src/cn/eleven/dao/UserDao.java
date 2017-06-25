@@ -1,8 +1,11 @@
 package cn.eleven.dao;
 
 import cn.eleven.com.User;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -85,7 +88,13 @@ public class UserDao {
 
         try {
             tx =  session.beginTransaction();
-            List list = session.createQuery("FROM User").list();
+            //使用HQL查询
+            // List list = session.createQuery("FROM User").list();
+            //使用criteria查询
+            Criteria criterias = session.createCriteria(User.class);
+            criterias.add(Restrictions.eq("id",3));
+            criterias.addOrder(Order.asc("id"));
+            List list = criterias.list();
             tx.commit();
             return list;
         }catch (RuntimeException e){
