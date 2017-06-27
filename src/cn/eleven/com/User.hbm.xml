@@ -8,5 +8,8 @@
             <generator class="native"/>
         </id>
         <property name="name" type="string" column="name"/>
+        <property name="age" type="int" column="age_"/>
+        <property name="brithday" type="java.util.Date" column="brithday_"/>
+        <property name="desc" type="string" column="`desc`"/>
     </class>
 </hibernate-mapping>

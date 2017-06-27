@@ -12,7 +12,17 @@
 
         <!--显示生成的SQL语句-->
         <property name="show_sql">true</property>
+        <!--格式化SQL语句-->
+        <property name="format_sql">true</property>
 
-        <mapping resource="cn/eleven/com/User.hbm.xml" />
+        <!--
+            create:先删除再创建
+            update:如果表不存在就创建，不一样就更新，一样就什么都不做
+            create-drop：初始化时创建表，SessionFactory执行close（）时删除表
+            validate:验证表结构是否一致，如果不一致就抛出异常
+        -->
+        <property name="hbm2ddl.auto">create</property>
+
+       <!-- <mapping resource="cn/eleven/com/User.hbm.xml" />-->
     </session-factory>
 </hibernate-configuration>

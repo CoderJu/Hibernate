@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
+import java.util.Date;
+
 
 /**
  * Created by User on 2017/6/21.
@@ -21,7 +23,8 @@ public class AppTest {
     public void save() throws Exception {
         User user = new User();
         user.setName("张三");
-
+        user.setBrithday(new Date());
+        user.setAge(18);
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         session.save(user);
