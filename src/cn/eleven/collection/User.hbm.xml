@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+使用集合属性时，一定要使用接口，而不能声明为具体的实现类，经过session操作后，集合就变成了Hibernate自己的集合实现类
+-->
+<hibernate-mapping package="cn.eleven.collection">
+    <class name="User" table="t_user">
+        <id name="id" type="java.lang.Integer" column="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="name" type="string" column="name"/>
+        <!--Set集合-->
+        <!--
+        需要说明的信息：
+        1、集合表的名称
+        2、集合表中的外键
+        3、集合表中的元素列
+        -->
+        <set name="addressSet" table="t_addressSet" sort="natural">
+            <key column="userId"></key>
+            <element type="string" column="address"></element>
+        </set>
+        <!--List集合-->
+        <!--
+        1、集合表的名称
+        2、集合表中的外键
+        3、集合表中的元素列
+        4、集合元素的索引列
+        -->
+       <list name="addressList" table="t_addressList">
+           <key  column="userId"></key>
+           <index column="idx"></index>
+           <element type="string" column="address"></element>
+       </list>
+        <!--数组集合-->
+        <array name="addressArray" table="addressArray">
+            <key column="userId"></key>
+            <index column="idx" ></index>
+            <element column="address" type="string"></element>
+        </array>
+        <!--Map集合-->
+        <!--
+          1、集合表的名称
+          2、集合表中的外键
+          3、
+        -->
+        <map name="addressMap" table="t_addressMap">
+            <key column="userId"></key>
+            <map-key type="string" column="key_"></map-key>
+            <element column="address" type="string"></element>
+        </map>
+
+        <!--Bag集合、无序可重复-->
+        <bag name="addressBag" table="t_addressBag">
+            <key column="userId"></key>
+            <element column="address" type="string" ></element>
+        </bag>
+    </class>
+</hibernate-mapping>

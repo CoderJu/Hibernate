@@ -21,7 +21,7 @@
             create-drop：初始化时创建表，SessionFactory执行close（）时删除表
             validate:验证表结构是否一致，如果不一致就抛出异常
         -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
        <!-- <mapping resource="cn/eleven/com/User.hbm.xml" />-->
     </session-factory>
