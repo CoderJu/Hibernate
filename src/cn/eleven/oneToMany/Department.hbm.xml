@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.eleven.oneToMany">
+    <class name="Department" table="t_department">
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string" column="name"/>
+
+        <!--
+            employees属性，set集合，一对多的关系
+            inverse属性：
+            默认为false，表示本方维护关联关系
+            true：表示本方不维护关联关系
+            只是影响是否能设置外键列的值，（有效值或者是null），
+        -->
+        <set name="employees" table="t_employee" inverse="false">
+            <key column="departmentId"></key>
+            <one-to-many class="Employee" />
+        </set>
+    </class>
+</hibernate-mapping>

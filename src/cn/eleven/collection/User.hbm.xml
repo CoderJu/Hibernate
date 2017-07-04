@@ -17,8 +17,9 @@
         1、集合表的名称
         2、集合表中的外键
         3、集合表中的元素列
+        order by 排序
         -->
-        <set name="addressSet" table="t_addressSet" sort="natural">
+        <set name="addressSet" table="t_addressSet" sort="natural" order-by="address Desc">
             <key column="userId"></key>
             <element type="string" column="address"></element>
         </set>

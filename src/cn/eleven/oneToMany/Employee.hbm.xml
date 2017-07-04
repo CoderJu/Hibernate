@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.eleven.oneToMany">
+    <class name="Employee" table="t_employee">
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string" column="name"/>
+
+        <!--
+            department属性，多对一的关系
+        -->
+        <many-to-one name="department" class="Department" column="departmentId"></many-to-one>
+    </class>
+</hibernate-mapping>

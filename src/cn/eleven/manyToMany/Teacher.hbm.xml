@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.eleven.manyToMany">
+    <class name="Teacher" table="t_teacher">
+        <id name="id" type="java.lang.Long" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string" column="name"/>
+        <!--
+         students：set集合，本类与students的多对多关系
+        -->
+        <set name="students" table="teacher_student">
+            <key column="teacherId"></key>
+            <many-to-many column="studentId" class="Student"/>
+        </set>
+    </class>
+</hibernate-mapping>
