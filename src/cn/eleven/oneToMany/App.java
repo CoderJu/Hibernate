@@ -34,8 +34,8 @@ public class App {
         department.getEmployees().add(employee1);
 
         try {
-            session.save(employee);
-            session.save(employee1);
+            //session.save(employee);
+            //session.save(employee1);
             session.save(department);
 
 
@@ -102,7 +102,7 @@ public class App {
            // session.delete(employee);
 
 
-            Department department = session.get(Department.class,2);
+            Department department = session.get(Department.class,6);
             session.delete(department);
         }catch (Exception e){
             tx.rollback();

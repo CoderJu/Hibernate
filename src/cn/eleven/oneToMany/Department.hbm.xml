@@ -15,8 +15,11 @@
             默认为false，表示本方维护关联关系
             true：表示本方不维护关联关系
             只是影响是否能设置外键列的值，（有效值或者是null），
+            cascade:默认为none，代表不级联（级联是指主操作对象进行操作时，关联对象也执行同样的操作）
+            可以设置为delete，标示删除主对象时关联对象也进行删除操作
+
         -->
-        <set name="employees" table="t_employee" inverse="false">
+        <set name="employees" table="t_employee"  cascade="all">
             <key column="departmentId"></key>
             <one-to-many class="Employee" />
         </set>
