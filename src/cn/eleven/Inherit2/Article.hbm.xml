@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.eleven.Inherit2">
+
+    <class name="cn.eleven.Inherit2.Article" table="t_article2" >
+        <id name="id" >
+            <generator class="native"/>
+        </id>
+        <property name="title" type="string" column="title"/>
+        <property name="content" type="text" length="10000"/>
+        <property name="postTime" type="timestamp"/>
+
+        <joined-subclass name="cn.eleven.Inherit2.Topic" table="t_Topic2">
+            <key column="id"></key>
+            <property name="title"></property>
+        </joined-subclass>
+
+        <joined-subclass name="cn.eleven.Inherit2.Reply" table="t_Reply2">
+            <key column="id"></key>
+            <property name="floor"></property>
+        </joined-subclass>
+
+    </class>
+</hibernate-mapping>
