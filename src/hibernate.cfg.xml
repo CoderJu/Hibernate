@@ -23,6 +23,6 @@
         -->
         <property name="hbm2ddl.auto">update</property>
 
-       <!-- <mapping resource="cn/eleven/com/User.hbm.xml" />-->
+        <!-- <mapping resource="cn/eleven/com/User.hbm.xml" />-->
     </session-factory>
 </hibernate-configuration>

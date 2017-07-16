@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.eleven.session2">
+    <class name="Person" table="t_person2">
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="native"></generator>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <!--
+            idCard属性，IdCard类型，表达的是与IdCard的一对一，采用基于外键的一对一方式，本方无外键方
+            property-ref:写的对方是对方映射中外建列对应的属性名
+        -->
+        <one-to-one name="idCard" class="IdCard" property-ref="person" ></one-to-one>
+     </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.eleven.session2">
+    <class table="t_IdCard2" name="IdCard">
+        <id column="id" type="java.lang.Integer" name="id">
+            <!--
+                当时用基于主键的一对一映射时，有外键方的主键生成策略一定要是foreign
+                参数property生成主键值时所根据的对象
+            -->
+            <generator class="foreign">
+                <param name="property" >person</param>
+            </generator>
+        </id>
+        <property name="number" column="number" type="string"/>
+        <!--
+           person属性，Person类型，
+           表达的是与Person的一对一，采用基于外键的一对一方式，本方有外键方
+       -->
+        <one-to-one name="person" class="Person" constrained="true">
+
+        </one-to-one>
+    </class>
+</hibernate-mapping>
