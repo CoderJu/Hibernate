@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+    auto-import:是否自动导入当前包
+-->
+<hibernate-mapping package="cn.eleven.qbc" auto-import="true">
+    <class name="Employee" table="t_employeeHql" >
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string" column="name"/>
+
+        <!--
+            department属性，多对一的关系
+        -->
+        <many-to-one name="department" class="Department" column="departmentId"></many-to-one>
+    </class>
+    <query name="queryHql">
+       <!-- FROM Employee  e where  e.id &gt;=:idMin and e.id &lt;= :idMax-->
+        <![CDATA[FROM Employee  e where  e.id >=:idMin and e.id <= :idMax]]>
+    </query>
+</hibernate-mapping>

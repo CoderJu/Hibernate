@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!--
+    auto-import:是否自动导入当前包,当在HQL语句中写简单名
+    false：时候要写全限定名
+-->
+<hibernate-mapping package="cn.eleven.qbc" auto-import="true">
+    <class name="Department" table="t_departmentHql" >
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string" column="name"/>
+
+        <set name="employees" table="t_employee"  cascade="all">
+            <key column="departmentId"></key>
+            <one-to-many class="Employee" />
+        </set>
+    </class>
+</hibernate-mapping>
