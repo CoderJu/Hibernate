@@ -17,4 +17,8 @@
         -->
         <many-to-one name="department" class="Department" column="departmentId"></many-to-one>
     </class>
+    <query name="queryHql">
+       <!-- FROM Employee  e where  e.id &gt;=:idMin and e.id &lt;= :idMax-->
+        <![CDATA[FROM Employee  e where  e.id >=:idMin and e.id <= :idMax]]>
+    </query>
 </hibernate-mapping>

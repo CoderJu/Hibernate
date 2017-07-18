@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
+import javax.management.Query;
 import java.util.Arrays;
 import java.util.List;
 
@@ -117,29 +118,46 @@ public class App {
 
         //查询时使用参数
         //1、使用问号占位符
-        hql="FROM Employee e where id between ? and ?";
-        List list = session.createQuery(hql).setParameter(0,5).setParameter(1,15)
-                .list();
+       /* hql="FROM Employee WHERE id BETWEEN ? AND ? ";
+        List list = session.createQuery(hql)
+                .setParameter(0,5)
+                .setParameter(1,15)
+                .list();*/
         //2、使用变量名
-      /*  hql="FROM Employee e where id between :idMin and :idMax";
+/*        hql="FROM Employee e where id between :idMin and :idMax";
         List list = session.createQuery(hql)
                 .setParameter("idMin",5)
                 .setParameter("idMax",15)
                 .list();*/
         //当参数是集合时
-        /*hql="FROM Employee e where id IN (:ids)";
+/*        hql="FROM Employee e where id IN (:ids)";
         List list = session.createQuery(hql)
                 .setParameterList("ids",new Object[]{1,2,3,5,8})
                 .list();*/
 
-        for (Object obj :list) {
+        //使用命名查询
+/*        List list =  session.getNamedQuery("queryHql")
+                .setParameter("idMin",5)
+                .setParameter("idMax",15)
+                .list();*/
+
+        //update与delete,不会通知session缓存
+/*        int result = session.createQuery("update  Employee e set e.name =? where id >15")
+                .setParameter(0,"找网吧").executeUpdate();
+        System.out.println("result=="+result);*/
+        int result = session.createQuery("DELETE  Employee e  where id >15")
+                .executeUpdate();
+        System.out.println("result=="+result);
+
+
+/*        for (Object obj :list) {
             if(obj.getClass().isArray()) {
                 System.out.println(Arrays.toString((Object[]) obj));
             }else{
                 System.out.println(obj);
             }
 
-        }
+        }*/
         session.getTransaction().commit();
         session.close();
     }

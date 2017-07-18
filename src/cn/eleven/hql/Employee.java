@@ -40,12 +40,4 @@ public class Employee {
     public Employee() {
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", department=" + department +
-                '}';
-    }
 }
