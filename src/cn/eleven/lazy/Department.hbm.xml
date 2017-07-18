@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.eleven.lazy">
+    <class name="Department" table="t_department_lazy">
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="string" column="name"/>
+
+        <!--
+            employees属性，set集合，一对多的关系
+            inverse属性：
+            默认为false，表示本方维护关联关系
+            true：表示本方不维护关联关系
+            只是影响是否能设置外键列的值，（有效值或者是null），
+            cascade:默认为none，代表不级联（级联是指主操作对象进行操作时，关联对象也执行同样的操作）
+            可以设置为delete，标示删除主对象时关联对象也进行删除操作
+
+            lazy:默认为true,懒加载
+                true:懒加载，在第一次使用是懒加载
+                false：立即加载，在获取本对象是就加载这个集合的所有元素
+                extra：增强的懒加载策略
+
+
+        -->
+        <set name="employees" table="t_employee"  cascade="all" lazy="extra">
+            <key column="departmentId"></key>
+            <one-to-many class="Employee" />
+        </set>
+    </class>
+</hibernate-mapping>
